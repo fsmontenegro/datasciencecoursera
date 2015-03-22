@@ -66,7 +66,23 @@ Additional vectors obtained by averaging the signals in a signal window sample. 
 Modified Data and Variables
 ---------------------------
 The tidy dataset contains 180 observations across 81 variables, specifically:
-. Subject - an integer variable corresponding to each of the 30 subjects of the original experiment
-. Activity - a factor variable corresponding to each activity performed. The possible values are: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
-. 79 other variables - numeric variables corresponding to the mean(), std(), and meanFreq() variable sets from the original dataset.
+
+* Subject - an integer variable corresponding to each of the 30 subjects of the original experiment
+* Activity - a factor variable corresponding to each activity performed. The possible values are: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+* 79 other variables - numeric variables corresponding to the mean(), std(), and meanFreq() variable sets from the original dataset.
+
+Transformations
+---------------
+The following transformations were performed to go from the original dataset to the tidy data set:
+
+1. Created temporary test data frame with test subjects, test activities and test measurements. Adjusted column names with descriptive text both manually (columns 1 and 2) and from reading the features from a separate dataset (all others).
+2. Created temporary train data frame with train subjects, train activities and train measurements. Adjusted column names with descriptive text both manually (columns 1 and 2) and from reading the features from a separate dataset (all others).
+3. Added both test and train data frames to main data frame via row binding.
+4. Converted numeric activity description to textual description by matching against activity data frame.
+5. Selected which measurement columns to include in tidy set via grep function for 'mean' and 'std' variable names in features data set.
+6. Re-assigned main data frame with selected columns: subject id, activity description and selected measurements.
+7. Created new data frame by using:
+
+* Grouping of main data frame by subject and activity.
+* Summarization of grouping by using 'mean' function across all other measurements.
 
