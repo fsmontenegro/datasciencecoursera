@@ -3,8 +3,8 @@ CodeBook.md
 
 This file describes the data, variables, and transformations used to clean up the original data set into the tidy data set created by run_analysis.R.
 
-Original Data and Variables
----------------------------
+Data and Variables from Original Dataset
+----------------------------------------
 The data derives from experiments that have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The original dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
@@ -63,16 +63,18 @@ Additional vectors obtained by averaging the signals in a signal window sample. 
 * tBodyGyroMean
 * tBodyGyroJerkMean
 
-Modified Data and Variables
----------------------------
+Data and Variables from new, "Tidy" Data Set
+--------------------------------------------
 The tidy dataset contains 180 observations across 81 variables, specifically:
 
-* Subject - an integer variable corresponding to each of the 30 subjects of the original experiment
-* Activity - a factor variable corresponding to each activity performed. The possible values are: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
-* 79 other variables - numeric variables corresponding to the mean(), std(), and meanFreq() variable sets from the original dataset.
+* Subject - an **__integer__** variable corresponding to each of the 30 subjects of the original experiment
+* Activity - a **__factor__** variable corresponding to each activity performed. The possible values are: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+* 79 other variables - **__numeric__** variables corresponding to the mean(), std(), and meanFreq() variable sets from the original dataset.
 
-Transformations
----------------
+The units for the measurements were not changed from the original dataset, as the mean function does not change the units.
+
+Transformations to move from Original to Tidy Data Sets
+-------------------------------------------------------
 The following transformations were performed to go from the original dataset to the tidy data set:
 
 1. Created temporary test data frame with test subjects, test activities and test measurements. Adjusted column names with descriptive text both manually (columns 1 and 2) and from reading the features from a separate dataset (all others).
